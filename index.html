@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="s1" class="fixed">
+    <h1>section 1</h1>
+  </section>
+
+  <section id="s2" class="fixed">
+    <h2>section 2</h2>
+  </section>
+
+
+  <script>
+    let s1 = document.getElementById('s1')
+    let s2 = document.getElementById('s2')
+
+    let s2Top = s2.offsetTop;
+    let scrollY = window.scrollY;
+    console.log(scrollY, s2Top);
+
+    window.addEventListener('scroll', function(){
+      scrollY = Math.round(window.scrollY);
+      console.log(scrollY, s2Top);
+      if(scrollY >= s2Top) {
+        s1.classList.remove('fixed')
+        s2.classList.remove('fixed')
+      } else {
+        s1.classList.add('fixed')
+        s2.classList.add('fixed')
+      }
+      document.querySelector('#s1 h1').style.fontSize = 40 + scrollY/10 + 'px'
+    })
+
+    window.addEventListener('resize', function(){
+      s2Top = s2.offsetTop;
+      scrollY = window.scrollY;
+    })
+  </script>
+</body>
+</html>
